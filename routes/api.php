@@ -12,6 +12,10 @@ Route::prefix('v1')->group(function (){
     Route::prefix('auth')->group(function () {
         Route::post('/login', [AuthController::class, 'login']);
     });
+
+    Route::prefix('subscribers')->group(function () {
+        Route::post('/', [SubscriberController::class, 'store']);
+    });
 });
 
 Route::middleware('auth:sanctum')->group(function () {
