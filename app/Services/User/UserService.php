@@ -19,7 +19,7 @@ class UserService extends BaseService
         return parent::create($data);
     }
 
-    public function getUserByEmail(string $login)
+    public function getUserByEmail(string $login): ?Model
     {
         return $this->repository->getByEmail($login);
     }
