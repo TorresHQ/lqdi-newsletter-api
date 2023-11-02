@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\AuthController;
+use App\Http\Controllers\Api\v1\SubscriberController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('v1')->group(function (){
         Route::prefix('subscribers')->group(function () {
             Route::get('/', [SubscriberController::class, 'index']);
+            Route::get('/welcome/{subscriber}', [SubscriberController::class, 'welcomeSubscriber']);
+        });
     });
 });
