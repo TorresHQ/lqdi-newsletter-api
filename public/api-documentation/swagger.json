@@ -1,0 +1,468 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Laravel LQDI Test Documentation",
+        "contact": {
+            "email": "hqt2300@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/users": {
+            "post": {
+                "tags": [
+                    "Cadastro (Sign Up)"
+                ],
+                "summary": "Cadastrar usuário",
+                "description": "Este endpoint cadastra um novo usuário",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "name",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Admin LQDI"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@lqdi.net"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "admin123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuário cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "uuid",
+                                                    "example": "9a81a840-2a1f-40cd-a064-2a7f3a4503cb"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Admin LQDI"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "admin@lqdi.net"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2021-09-22T00:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2021-09-22T00:00:00.000000Z"
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User created successfully."
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 201
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Conteúdo inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The email has already been taken."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "The email has already been taken."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Autenticação (Sign In)"
+                ],
+                "summary": "Obter token de autenticação",
+                "description": "Este endpoint fornece um token de autenticação para o usuário",
+                "operationId": "4aed2e67cb048a8c6ce647a3976e9b8c",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@lqdi.net"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "admin123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token de autenticação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "uuid",
+                                                    "example": "9a81a840-2a1f-40cd-a064-2a7f3a4503cb"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Admin LQDI"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "admin@lqdi.net"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "2|MZEBxLy1zulPtND6brlf8GOPy57Q4DwYunlibXGj"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login successful."
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 401
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/subscribers": {
+            "post": {
+                "tags": [
+                    "Inscritos"
+                ],
+                "summary": "Cadastrar inscrito",
+                "description": "Este endpoint cadastra um novo inscrito",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Héctor Queiroz Torres"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "hqtorres@lqdi.net"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Inscrito cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "uuid",
+                                                    "example": "9a81a840-2a1f-40cd-a064-2a7f3a4503cb"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Maurice Halvorson IV"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "maurice@lqdi.net"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2021-09-22T00:00:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2021-09-22T00:00:00.000000Z"
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Subscriber created successfully."
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 201
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Conteúdo inválido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Email must be unique"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "Email must be unique"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Inscritos"
+                ],
+                "summary": "Listar inscritos",
+                "description": "Este endpoint retorna uma lista de inscritos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de inscritos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "uuid",
+                                                        "example": "9a81a840-2a1f-40cd-a064-2a7f3a4503cb"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Maurice Halvorson IV"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "akeem.gleichner@hotmail.com"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2021-09-22T00:00:00.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2021-09-22T00:00:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Subscribers retrieved successfully."
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+
+                            }
+                         }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/subscribers/welcome/{subscriber}": {
+            "get": {
+                "tags": [
+                    "Inscritos"
+                ],
+                "summary": "Enviar email de boas vindas",
+                "description": "Este endpoint envia um email de boas vindas para o inscrito",
+                "parameters": [
+                    {
+                        "name": "subscriber",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do inscrito",
+                        "schema": {
+                            "type": "string",
+                            "example": "9a81a840-2a1f-40cd-a064-2a7f3a4503cb"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Email enviado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Welcome email sent successfully."
+                                        },
+                                        "status": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+
+                            }
+                         }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerToken": {
+                "type": "http",
+                "description": "Acess token obtido na autenticação",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
