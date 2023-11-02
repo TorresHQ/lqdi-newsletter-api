@@ -1,5 +1,6 @@
 # LQDI Newsletter API 
 ### Horário de início do projeto: 15:45
+### Horário de conlcusão do projeto: 17:00
 
 <br/>
 <br/>
