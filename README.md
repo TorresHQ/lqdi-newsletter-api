@@ -7,7 +7,7 @@
 # Considerações
 ### Objetivos e Recursos: https://github.com/TorresHQ/lqdi-newsletter-api/pull/2
 ### Projeto publicado em: https://lqdi-newsletter-api.up.railway.app/
-### Documentação online da api: https://https://lqdi-newsletter-api.up.railway.app/public/index.html
+### Documentação online da api: https://lqdi-newsletter-api.up.railway.app/api-documentation/index.html
 > [!WARNING]
 > Este recurso será removido após avaliação, uma vez que deve ser utilizado apenas em ambiente de desenvolvimento, a fim de não comprometer a segurança da API
 
